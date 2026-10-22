@@ -1,0 +1,27 @@
+name: 🧪 Test
+
+on:
+  push:
+
+jobs:
+  test-latest:
+    name: Test DuckDB Setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup DuckDB
+        uses: opt-nc/setup-duckdb-action@duckdb-v2-breaking-changes
+        with:
+          version: v2.0.0
+      - name: Verify DuckDB Installation
+        run: duckdb --version
+
+  test-previous:
+    name: Test DuckDB Setup (Previous Version)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup DuckDB
+        uses: opt-nc/setup-duckdb-action@duckdb-v2-breaking-changes
+        with:
+          version: v1.5.2
+      - name: Verify DuckDB Installation
+        run: duckdb --version
