@@ -2,6 +2,7 @@ name: 🧪 Test
 
 on:
   push:
+    
 
 jobs:
   test-ubuntu-amd64-latest:
