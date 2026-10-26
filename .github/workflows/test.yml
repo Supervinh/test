@@ -4,23 +4,133 @@ on:
   push:
 
 jobs:
-  test-latest:
+  test-ubuntu-amd64-latest:
     name: Test DuckDB Setup
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Setup DuckDB
-        uses: opt-nc/setup-duckdb-action@duckdb-v2-breaking-changes
+        uses: opt-nc/setup-duckdb-action@others-arch
         with:
           version: v2.0.0
       - name: Verify DuckDB Installation
         run: duckdb --version
 
-  test-previous:
+  test-ubuntu-amd64-previous:
     name: Test DuckDB Setup (Previous Version)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Setup DuckDB
-        uses: opt-nc/setup-duckdb-action@duckdb-v2-breaking-changes
+        uses: opt-nc/setup-duckdb-action@others-arch
+        with:
+          version: v1.5.2
+      - name: Verify DuckDB Installation
+        run: duckdb --version
+
+  test-ubuntu-arm64-latest:
+    name: Test DuckDB Setup (ARM64)
+    runs-on: ubuntu-26.04-arm
+    steps:
+      - name: Setup DuckDB
+        uses: opt-nc/setup-duckdb-action@others-arch
+        with:
+          version: v2.0.0
+      - name: Verify DuckDB Installation
+        run: duckdb --version
+
+  test-ubuntu-arm64-previous:
+    name: Test DuckDB Setup (ARM64 Previous Version)
+    runs-on: ubuntu-26.04-arm
+    steps:
+      - name: Setup DuckDB
+        uses: opt-nc/setup-duckdb-action@others-arch
+        with:
+          version: v1.5.2
+      - name: Verify DuckDB Installation
+        run: duckdb --version
+
+  test-windows-amd64-latest:
+    name: Test DuckDB Setup (Windows AMD64)
+    runs-on: windows-2025
+    steps:
+      - name: Setup DuckDB
+        uses: opt-nc/setup-duckdb-action@others-arch
+        with:
+          version: v2.0.0
+      - name: Verify DuckDB Installation
+        run: duckdb --version
+
+  test-windows-amd64-previous:
+    name: Test DuckDB Setup (Windows AMD64 Previous Version)
+    runs-on: windows-2025
+    steps:
+      - name: Setup DuckDB
+        uses: opt-nc/setup-duckdb-action@others-arch
+        with:
+          version: v1.5.2
+      - name: Verify DuckDB Installation
+        run: duckdb --version
+
+  test-windows-arm64-latest:
+    name: Test DuckDB Setup (Windows ARM64)
+    runs-on: 	windows-11-arm
+    steps:
+      - name: Setup DuckDB
+        uses: opt-nc/setup-duckdb-action@others-arch
+        with:
+          version: v2.0.0
+      - name: Verify DuckDB Installation
+        run: duckdb --version
+
+  test-windows-arm64-previous:
+    name: Test DuckDB Setup (Windows ARM64 Previous Version)
+    runs-on: 	windows-11-arm
+    steps:
+      - name: Setup DuckDB
+        uses: opt-nc/setup-duckdb-action@others-arch
+        with:
+          version: v1.5.2
+      - name: Verify DuckDB Installation
+        run: duckdb --version
+
+  test-macos-amd64-latest:
+    name: Test DuckDB Setup (macOS AMD64)
+    runs-on: macos-15-intel
+    steps:
+      - name: Setup DuckDB
+        uses: opt-nc/setup-duckdb-action@others-arch
+        with:
+          version: v2.0.0
+      - name: Verify DuckDB Installation
+        run: duckdb --version
+
+  test-macos-amd64-previous:
+    name: Test DuckDB Setup (macOS AMD64 Previous Version)
+    runs-on: macos-15-intel
+    steps:
+      - name: Setup DuckDB
+        uses: opt-nc/setup-duckdb-action@others-arch
+        with:
+          version: v1.5.2
+      - name: Verify DuckDB Installation
+        run: duckdb --version
+
+  test-macos-arm64-latest:
+    name: Test DuckDB Setup (macOS ARM64)
+    runs-on: macos-15
+    steps:
+      - name: Setup DuckDB
+        uses: opt-nc/setup-duckdb-action@others-arch
+        with:
+          version: v2.0.0
+      - name: Verify DuckDB Installation
+        run: duckdb --version
+
+  test-macos-arm64-previous:
+    name: Test DuckDB Setup (macOS ARM64 Previous Version)
+    runs-on: macos-15
+    steps:
+      - name: Setup DuckDB
+        uses: opt-nc/setup-duckdb-action@others-arch
         with:
           version: v1.5.2
       - name: Verify DuckDB Installation
