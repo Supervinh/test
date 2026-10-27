@@ -3,136 +3,27 @@ name: 🧪 Test
 on:
   push:
 
-    
 jobs:
-  test-ubuntu-amd64-latest:
-    name: Test DuckDB Setup
-    runs-on: ubuntu-26.04
+  test:
+    name: Test DuckDB Setup (${{ matrix.os }}, ${{ matrix.version }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-26.04
+          - ubuntu-26.04-arm
+          - windows-2025
+          - windows-11-arm
+          - macos-15-intel
+          - macos-15
+        version:
+          - v2.0.0
+          - v1.5.2
     steps:
       - name: Setup DuckDB
-        uses: opt-nc/setup-duckdb-action@others-arch
+        uses: opt-nc/setup-duckdb-action@develop
         with:
-          version: v2.0.0
-      - name: Verify DuckDB Installation
-        run: duckdb --version
-
-  test-ubuntu-amd64-previous:
-    name: Test DuckDB Setup (Previous Version)
-    runs-on: ubuntu-26.04
-    steps:
-      - name: Setup DuckDB
-        uses: opt-nc/setup-duckdb-action@others-arch
-        with:
-          version: v1.5.2
-      - name: Verify DuckDB Installation
-        run: duckdb --version
-
-  test-ubuntu-arm64-latest:
-    name: Test DuckDB Setup (ARM64)
-    runs-on: ubuntu-26.04-arm
-    steps:
-      - name: Setup DuckDB
-        uses: opt-nc/setup-duckdb-action@others-arch
-        with:
-          version: v2.0.0
-      - name: Verify DuckDB Installation
-        run: duckdb --version
-
-  test-ubuntu-arm64-previous:
-    name: Test DuckDB Setup (ARM64 Previous Version)
-    runs-on: ubuntu-26.04-arm
-    steps:
-      - name: Setup DuckDB
-        uses: opt-nc/setup-duckdb-action@others-arch
-        with:
-          version: v1.5.2
-      - name: Verify DuckDB Installation
-        run: duckdb --version
-
-  test-windows-amd64-latest:
-    name: Test DuckDB Setup (Windows AMD64)
-    runs-on: windows-2025
-    steps:
-      - name: Setup DuckDB
-        uses: opt-nc/setup-duckdb-action@others-arch
-        with:
-          version: v2.0.0
-      - name: Verify DuckDB Installation
-        run: duckdb --version
-
-  test-windows-amd64-previous:
-    name: Test DuckDB Setup (Windows AMD64 Previous Version)
-    runs-on: windows-2025
-    steps:
-      - name: Setup DuckDB
-        uses: opt-nc/setup-duckdb-action@others-arch
-        with:
-          version: v1.5.2
-      - name: Verify DuckDB Installation
-        run: duckdb --version
-
-  test-windows-arm64-latest:
-    name: Test DuckDB Setup (Windows ARM64)
-    runs-on: 	windows-11-arm
-    steps:
-      - name: Setup DuckDB
-        uses: opt-nc/setup-duckdb-action@others-arch
-        with:
-          version: v2.0.0
-      - name: Verify DuckDB Installation
-        run: duckdb --version
-
-  test-windows-arm64-previous:
-    name: Test DuckDB Setup (Windows ARM64 Previous Version)
-    runs-on: 	windows-11-arm
-    steps:
-      - name: Setup DuckDB
-        uses: opt-nc/setup-duckdb-action@others-arch
-        with:
-          version: v1.5.2
-      - name: Verify DuckDB Installation
-        run: duckdb --version
-
-  test-macos-amd64-latest:
-    name: Test DuckDB Setup (macOS AMD64)
-    runs-on: macos-15-intel
-    steps:
-      - name: Setup DuckDB
-        uses: opt-nc/setup-duckdb-action@others-arch
-        with:
-          version: v2.0.0
-      - name: Verify DuckDB Installation
-        run: duckdb --version
-
-  test-macos-amd64-previous:
-    name: Test DuckDB Setup (macOS AMD64 Previous Version)
-    runs-on: macos-15-intel
-    steps:
-      - name: Setup DuckDB
-        uses: opt-nc/setup-duckdb-action@others-arch
-        with:
-          version: v1.5.2
-      - name: Verify DuckDB Installation
-        run: duckdb --version
-
-  test-macos-arm64-latest:
-    name: Test DuckDB Setup (macOS ARM64)
-    runs-on: macos-15
-    steps:
-      - name: Setup DuckDB
-        uses: opt-nc/setup-duckdb-action@others-arch
-        with:
-          version: v2.0.0
-      - name: Verify DuckDB Installation
-        run: duckdb --version
-
-  test-macos-arm64-previous:
-    name: Test DuckDB Setup (macOS ARM64 Previous Version)
-    runs-on: macos-15
-    steps:
-      - name: Setup DuckDB
-        uses: opt-nc/setup-duckdb-action@others-arch
-        with:
-          version: v1.5.2
+          version: ${{ matrix.version }}
       - name: Verify DuckDB Installation
         run: duckdb --version
